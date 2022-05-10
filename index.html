@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Task Manager</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    
+    <h1>Welcome to my Task Manager</h1>
+
+    <main class="main">
+        <section id="list">
+
+            <div class="control text pb-1">
+                <button id="btnTogglePanel" class="btn btn-dark mt-1"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div id="tasks" class="tasks">
+
+            </div>
+
+        </section>
+
+        <section id="form">
+            <h3>Task Information</h3>
+            <div class="capture-form">
+
+
+                <div class="control">
+                    <label class="form-label">Important</label>
+                    <i id="iImportant" class="iImportant far fa-star"></i>
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Title</label>
+                    <input id="txtTitle" type="text" class="form-control">
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Description</label>
+                    <textarea id="txtDescription" rows="5" class="form-control"></textarea>
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Due Date</label>
+                    <input id="txtDueDate" type="datetime-local" class="form-control">
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Location</label>
+                    <input id="txtLocation" type="text" class="form-control">
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Invites</label>
+                    <input id="txtInvites" type="text" class="form-control">
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Color</label>
+                    <input id="txtColor" type="color" class="form-control">
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Frequency</label>
+                    <select id="selFrequency"class="form-select">
+                        <option value="1">- One Time -</option> 
+                        <option value="2">Daily</option> 
+                        <option value="3">Weekly</option> 
+                        <option value="4">Monthly</option> 
+                    </select>
+                </div>
+
+                <div class="control">
+                    <label class="form-label">Status</label>
+                    <select id="selStatus" class="form-select">
+                        <option value="1">Pending</option> 
+                        <option value="2">In Progress</option> 
+                        <option value="3">Paused</option> 
+                        <option value="4">Completed</option> 
+                        <option value="5">Abandoned</option> 
+                    </select>
+                </div>
+
+                <div class="control text-center pb-1">
+                    <button id="saveTaskBtn" class="btn btn-dark mt-1">Save Task</button>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/task.js"></script>
+    <script src="scripts/app.js"></script>
+
+</body>
+</html>
+
+<!--Task:
+    id - num
+    title - str
+    description - str
+    important - boolean
+    dueDate - date/time
+    location - str
+    invites - str (comma separated)
+    color - string (rgb)
+    frequency - string (list)
+    status - number (list)
+        1 - pending
+        2 - in progress
+        3 - pause
+        4 - completed
+        5 - abandoned
+    -->

@@ -1,0 +1,86 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+body{
+    
+    background-image: url(..//img/IwWBH3.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto;
+}
+h1{
+    color: #fefefeba;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+#btnTogglePanel{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+#btnTogglePanel:hover{
+    border: 3px solid white;
+}
+.main{
+    display: flex;
+    
+}
+#list{
+    flex: 5;
+    position: relative;
+    min-height: calc(100vh - 89px);
+    padding-top: 60px;
+}
+#form{
+    flex: 2;
+    background-color: #fafafa;
+    padding: 10px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 6px;
+    min-height: calc(100vh - 89px);
+}
+
+#form .control{
+    margin-bottom: 12px;
+}
+
+.iImportant{
+    font-size: 32px;
+    cursor: pointer;
+
+}
+
+.iImportant:hover{
+    color: red;
+}
+#form.control.fas{
+    color: rgb(216, 17, 17);
+}
+#form.control.far{
+    color: #555;
+}
+.task-item{
+    padding: 10px;
+    display: flex;
+    color: #fefefe;
+    background-color: rgba(54, 51, 51, 0.637);
+    border: 1px solid white;
+    border-radius: 6px;
+    margin: 6px 6px 6px 6px;
+
+}
+.task-item:hover{
+    border-color: red;
+    border-left-width: 5px;
+}
+.task-item .info-1{
+    flex: 3;
+}
+.task-item .info-2{
+    flex: 1;
+}
+.task-item .info-3{
+    flex: 1;
+}
