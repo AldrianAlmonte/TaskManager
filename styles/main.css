@@ -7,7 +7,7 @@ body{
     background-image: url(..//img/IwWBH3.jpg);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: auto;
+    background-size: cover;
 }
 h1{
     color: #fefefeba;
@@ -71,6 +71,9 @@ h1{
     margin: 6px 6px 6px 6px;
 
 }
+.task-item .icon-class{
+    flex: 1;
+}
 .task-item:hover{
     border-color: red;
     border-left-width: 5px;
@@ -83,4 +86,8 @@ h1{
 }
 .task-item .info-3{
     flex: 1;
+}
+.task-item .delete-btn:hover{
+    color: grey;
+    cursor: pointer;
 }

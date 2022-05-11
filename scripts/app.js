@@ -50,6 +50,10 @@ function saveTask() {
   displayTask(task);
 }
 
+function deleteTask() {
+  console.log("deleting");
+}
+
 function getStatusText(status) {
   switch (status) {
     case `1`:
@@ -91,8 +95,8 @@ function displayTask(task) {
   }
 
   let syntax = `<div class="task-item" style="border: 1px solid ${task.color};">
-        <div class="iconClass">  
-        
+        <div class="icon-class">  
+          <i class="${iconClass}"></i>
         </div>
 
         <div class="info-1">  
@@ -114,6 +118,10 @@ function displayTask(task) {
             <label>${getStatusText(task.status)}</label>
             <label>${getFrequencyText(task.frequency)}</label>
         </div>
+
+        <div id="delete-btn" class="delete-btn">
+          <i class="fas fa-trash-alt"></i>
+        </div>
             
 
         </div>`;
@@ -126,6 +134,7 @@ function init() {
   $("#iImportant").click(toggleImportance);
   $("#btnTogglePanel").click(toggleButton);
   $("#saveTaskBtn").click(saveTask);
+  $("#delete-btn").click(deleteTask);
   //load data
 }
 
