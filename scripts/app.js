@@ -2,6 +2,7 @@ const ICONIMPORTANT = "iImportant fas fa-star";
 const ICONNONIMPORTANT = "iImportant far fa-star";
 let important = false;
 let panelVisible = true;
+let count = 0;
 
 function toggleImportance() {
   if (important) {
@@ -29,7 +30,6 @@ function saveTask() {
   let desc = $("#txtDescription").val();
   let dueDate = $("#txtDueDate").val();
   let location = $("#txtLocation").val();
-  let invites = $("#txtInvites").val();
   let color = $("#txtColor").val();
   let frequency = $("#selFrequency").val();
   let status = $("#selStatus").val();
@@ -41,17 +41,61 @@ function saveTask() {
     desc,
     dueDate,
     location,
-    invites,
     color,
     frequency,
     status
   );
-  console.log(task);
-  displayTask(task);
+  // console.log(task);
+  // displayTask(task);
+
+  //sending a request to a server
+  $.ajax({
+    type: "post",
+    url: "https://fsdiapi.azurewebsites.net/api/tasks",
+    data: JSON.stringify(task),
+    contentType: "application/json",
+    success: function (res) {
+      console.log("Task saved", res);
+      displayTask(task);
+      clearForm();
+
+      //update the count
+      total += 1;
+      $("#headcount").text("You have " + total + "task");
+    },
+    error: function (errorDetails) {
+      console.log("Save failed", errorDetails);
+    },
+  });
+}
+
+function clearForm() {
+  // $("#txtTitle").val("");
+  // $("#txtDescription").val("");
+  // $("#txtDueDate").val("");
+  // $("#txtLocation").val("");
+  // $("#txtColor").val("#ffffff");
+  // $("#selFrequency").val("");
+  // $("#selStatus").val("");
+  $("select").val("0");
+  $("input").val("");
+  $("textarea").val("");
+  $("#txtColor").val("#ffffff");
 }
 
 function deleteTask() {
   console.log("deleting");
+  $.ajax({
+    type: "delete",
+    url: "https://fsdiapi.azurewebsites.net/api/tasks/clear/Aldrian",
+    success: function () {
+      // reload the page
+      location.reload();
+    },
+    error: function () {
+      console.log("Error clearing tasks");
+    },
+  });
 }
 
 function getStatusText(status) {
@@ -106,27 +150,43 @@ function displayTask(task) {
 
         <div class="info-2"> 
             <label>${task.dueDate}</label>
-            <label>${task.location}</label>
         </div>
 
         <div class="info-3"> 
-            <p>${task.invites}</p>
-                
+            <label>${task.location}</label>
         </div>
 
-        <div class="info-2"> 
+        <div class="info-4"> 
             <label>${getStatusText(task.status)}</label>
             <label>${getFrequencyText(task.frequency)}</label>
         </div>
-
-        <div id="delete-btn" class="delete-btn">
-          <i class="fas fa-trash-alt"></i>
-        </div>
-            
-
+        
         </div>`;
 
   $("#tasks").append(syntax);
+}
+function fetchTask() {
+  $.ajax({
+    type: "get",
+    url: "https://fsdiapi.azurewebsites.net/api/tasks",
+    success: function (res) {
+      let data = JSON.parse(res); // (decode) from string to obj
+      let count = 0;
+
+      //for loop over data
+      for (let i = 0; i < data.length; i++) {
+        //get every element inside the array
+        let task = data[i];
+        //send the element to the display fn
+        if (task.name == "Aldrian") {
+          displayTask(task);
+        }
+      }
+    },
+    error: function (err) {
+      console.log("Error retrieving data", err);
+    },
+  });
 }
 
 function init() {
@@ -134,8 +194,9 @@ function init() {
   $("#iImportant").click(toggleImportance);
   $("#btnTogglePanel").click(toggleButton);
   $("#saveTaskBtn").click(saveTask);
-  $("#delete-btn").click(deleteTask);
+  $("#deleteBtnAll").click(deleteTask);
   //load data
+  fetchTask();
 }
 
 window.onload = init;

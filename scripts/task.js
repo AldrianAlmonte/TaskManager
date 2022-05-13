@@ -5,7 +5,6 @@ class Task {
     description,
     dueDate,
     location,
-    invites,
     color,
     frequency,
     status
@@ -15,7 +14,6 @@ class Task {
     this.description = description;
     this.dueDate = dueDate;
     this.location = location;
-    this.invites = invites;
     this.color = color;
     this.frequency = frequency;
     this.status = status;
